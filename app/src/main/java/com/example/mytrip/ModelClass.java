@@ -23,4 +23,6 @@ public class ModelClass {
     public String getBody() {
         return body;
     }
+
+
 }

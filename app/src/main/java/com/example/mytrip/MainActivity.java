@@ -26,10 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         List<ModelClass> modelClassList = new ArrayList<>();
-        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
-        modelClassList.add(new ModelClass(R.drawable.ic_launcher_background, "This is Trip 2", "blablablablablabla"));
-        modelClassList.add(new ModelClass(R.drawable.ic_launcher_background, "This is Trip 3", "blablablablablabla"));
-        modelClassList.add(new ModelClass(R.drawable.ic_launcher_background, "This is Trip 4", "blablablablablabla"));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות ובהם גם אחד מעגלי. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט2", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט3", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט4", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט5", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט6", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט7", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט8", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות, ובהם גם אחד מעגלי. "));
+
+
+
+
+
         Adapter adapter = new Adapter(modelClassList);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
