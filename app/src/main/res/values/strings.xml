@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyTrip</string>
+    <string name="descriptor">Splash</string>
 </resources>
