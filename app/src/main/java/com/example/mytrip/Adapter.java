@@ -1,12 +1,17 @@
 package com.example.mytrip;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.contentcapture.ContentCaptureCondition;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuView;
@@ -17,9 +22,7 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
 
     private List<ModelClass> modelClassList;
-
-
-    public Adapter(List<ModelClass> modelClassList){
+    public Adapter(List<ModelClass> modelClassList) {
         this.modelClassList = modelClassList;
     }
 
@@ -27,20 +30,25 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout, viewGroup, false);
-        return  new Viewholder(view);
+        return new Viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholder viewholder, final int position) {
+    public void onBindViewHolder(@NonNull final Viewholder viewholder, final int position) {
         int resource = modelClassList.get(position).getImageIcon();
         String title = modelClassList.get(position).getTitle();
-        final String body  = modelClassList.get(position).getBody();
+        final String body = modelClassList.get(position).getBody();
+
         viewholder.btnReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "the position: " + position,
-                        Toast.LENGTH_SHORT).show();
+                 Toast.makeText(v.getContext(), "the position: " + position,
+                      Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), AllTripInfo.class);
+                intent.putExtra("tripId", position);
+                v.getContext().startActivity(intent);
             }
+
         });
         viewholder.setData(resource, title, body);
     }
