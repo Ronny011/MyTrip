@@ -21,8 +21,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#110"
-                android:textSize="14sp" />
-
+                android:textDirection="rtl"
+                android:textSize="18sp" />
 
 
             <TextView
@@ -31,8 +31,18 @@
                 android:layout_height="wrap_content"
                 android:textColor="#110"
                 android:textSize="12sp"
+                android:textDirection="rtl"
                 android:text="" />
 
+            <TextView
+                android:id="@+id/tv_link"
+                android:autoLink="all"
+                android:clickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#4169e1"
+                android:textSize="12sp"
+                android:text="" />
 
 
         </LinearLayout>
