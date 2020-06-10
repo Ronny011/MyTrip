@@ -52,7 +52,7 @@ public class Customer {
     }
 
 
-    public byte[] getImg() {
+    public Blob getImg() {
         return this.bImg;
     }
 
