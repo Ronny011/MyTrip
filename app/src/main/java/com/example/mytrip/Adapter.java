@@ -42,8 +42,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
         viewholder.btnReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 Toast.makeText(v.getContext(), "the position: " + position,
-                      Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(v.getContext(), AllTripInfo.class);
                 intent.putExtra("tripId", position);
                 v.getContext().startActivity(intent);
