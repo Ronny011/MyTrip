@@ -24,6 +24,7 @@
                 android:textDirection="rtl"
                 android:layout_gravity="center"
                 android:paddingTop="50dp"
+                android:paddingBottom="50dp"
                 android:textSize="18sp" />
 
 
@@ -34,20 +35,29 @@
                 android:textColor="#110"
                 android:textSize="12sp"
                 android:textDirection="rtl"
-                android:padding="50dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:text="" />
+
+            <Button
+                android:id="@+id/more_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/more_button"
+                android:text="המשך"
+            android:translationY="-80dp"/>
 
             <TextView
                 android:id="@+id/tv_link"
-                android:autoLink="web"
-                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#4169e1"
                 android:textSize="12sp"
                 android:layout_gravity="center"
+                android:paddingTop="10dp"
                 android:paddingBottom="5dp"
-                android:text="מצא ב - Google Maps" />
+                android:text="@string/google_maps"
+                android:focusable="true" />
 
             <ImageView
                 android:id="@+id/imageView3"

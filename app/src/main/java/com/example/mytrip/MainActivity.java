@@ -3,8 +3,10 @@ package com.example.mytrip;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +16,17 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar action_bar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(action_bar);
 
         recyclerView = findViewById(R.id.rv);
 
@@ -24,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-
         List<ModelClass> modelClassList = new ArrayList<>();
-        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט", "הטיול מתאים למשפחות, חלקו אף סלול לעגלות" + " תמצאו בו כמה מסלולים בני 2-4 שעות ובהם גם אחד מעגלי. "));
-        modelClassList.add(new ModelClass(R.drawable.hof_dor, "חוף דור-הבונים", "הטיול מתאים למשפחות, מסלול קל" + " טיול קצר ונעים לאורך חוף יפהפה, שטומן בחובו היסטוריה ארוכת שנים, ספינות טרופות ואוצרות טבועים, טבע וצמחיית חוף ים, שהופכים את הטיול לשונה ומיוחד. "));
-        modelClassList.add(new ModelClass(R.drawable.nahal_sorek, "שפך נחל שורק", "טיול קצר בגן הלאומי שפך נחל שורק הסמוך לפלמחים" + "טיול קצר בנחל, ניתן לשלב פיקניק באיזור וגם להגיע לחוף פלמחים. "));
+        modelClassList.add(new ModelClass(R.drawable.nahal_shofet, "נחל השופט", this
+                .getResources().getString(R.string.shofet_desc).substring(0,75) + "..."));
+        modelClassList.add(new ModelClass(R.drawable.hof_dor, "חוף דור-הבונים", this
+                .getResources().getString(R.string.dor_desc).substring(0,75) + "..."));
+        modelClassList.add(new ModelClass(R.drawable.nahal_sorek, "שפך נחל שורק", this
+                .getResources().getString(R.string.sorek_desc).substring(0,75) + "..."));
         modelClassList.add(new ModelClass(R.drawable.kenion_adom, "הקניון האדום", "בדרום הרי אילת, כעשרים ק\"מ צפונית לעיר עצמה נמצא קניון. לא כזה שחנויות בו לרוב, אלא כזה שמתחתר באבן האדומה, אבן החול שמקורה בימים קדומים. מסלול קליל ומעגלי המתאים מאוד כעצירת התרעננות מ/ל-אילת"));
         modelClassList.add(new ModelClass(R.drawable.nahal_eiun, "נחל עיון", "בקצה הצפוני של הארץ, היכן שהאווירה גלילית ואחרת, זורם לו נחל עיון, המוכר בזכות מפל התנור, שמימיו צונחים מגובה של שלושים מטר אל תוך בריכה מרהיבה. אבל במסלול הקצר והנוח, שזורם בצידה של המושבה מטולה"));
         modelClassList.add(new ModelClass(R.drawable.ein_gedi, "עין גדי", "עין גדי, נחל דוד ונחל ערוגות הן שכיות חמדה מקסימות בנוף של מדבר יהודה. במקום תוכלו למצוא מעיינות זורמים, בית כנסת עתיק, מקדש מהתקופה הכלקוליתית, יעלים, שפנים ונוף יפה. ישנם מספר מסלולים אפשריים."));
