@@ -13,17 +13,17 @@
     <string name="meron_title">שמורת הר מירון</string>
     <string name="snir_title">נחל שניר-חצבני</string>
     <string name="cave_title">ארץ אלף המערות</string>
-    <string name="shofet_link"><a href="shorturl.at/avLU4" />מצא ב - Google Maps</string>
-    <string name="dor_link"><a href="shorturl.at/xHSW6"/>מצא ב - Google Maps</string>
-    <string name="sorek_link"><a href="shorturl.at/fkTW7"/>מצא ב - Google Maps</string>
-    <string name="red_link"><a href="shorturl.at/zPXZ6"/>מצא ב - Google Maps</string>
-    <string name="ayun_link"><a href="shorturl.at/efgmv"/>מצא ב - Google Maps</string>
-    <string name="gedi_link"><a href="shorturl.at/rvyY1"/>מצא ב - Google Maps</string>
-    <string name="ofir_link"><a href="shorturl.at/qFN27"/>מצא ב - Google Maps</string>
-    <string name="sharon_link"><a href="shorturl.at/emGJY"/>מצא ב - Google Maps</string>
-    <string name="meron_link"><a href="shorturl.at/tIR78"/>מצא ב - Google Maps</string>
-    <string name="snir_link"><a href="shorturl.at/evCK2"/>מצא ב - Google Maps</string>
-    <string name="cave_link"><a href="shorturl.at/uFGOV"/>מצא ב - Google Maps</string>
+    <string name="shofet_link"><a href="https://www.google.com/maps/place/%D7%A0%D7%97%D7%9C+%D7%94%D7%A9%D%95%D7%A4%D7%98%E2%80%AD/@32.6329255,35.1196275,14z/data=!3m1!4b1!4m5!3m4!1s0x151da938675072a1:0x4f71ed74f60e8c06!8m2!3d32.628333!4d35.105822">מצא ב - Google Maps</a></string>
+    <string name="dor_link"><a href="https://www.google.com/maps/place/%D7%97%D7%95%D7%A3+%D7%93%D7%95%D7%A8+%D7%94%D7%91%D7%95%D7%A0%D7%99%D7%9D%E2%80%AD/data=!4m2!3m1!1s0x151da0e9090f1f0b:0x94f3899cdf9c9490?sa=X&amp;ved=2ahUKEwi8sIqitfTpAhUBzqQKHVttB8cQ8gEwHHoECBAQBg">מצא ב - Google Maps</a></string>
+    <string name="sorek_link"><a href="https://www.google.com/maps/place/%D7%92%D7%9F+%D7%9C%D7%90%D7%95%D7%9E%D7%99+%D7%A9%D7%A4%D7%9A+%D7%A0%D7%97%D7%9C+%D7%A9%D7%95%D7%A8%D7%A7%E2%80%AD/@31.9343163,34.7270034,17z/data=!3m1!4b1!4m5!3m4!1s0x1502c7b2667d6f17:0x9d2179d29db70715!8m2!3d31.9343163!4d34.7248147">מצא ב - Google Maps</a></string>
+    <string name="red_link"><a href="https://www.google.com/maps/place/%D7%94%D7%A7%D7%A0%D7%99%D7%95%D7%9F+%D7%94%D7%90%D7%93%D7%95%D7%9D%E2%80%AD/@29.680915,34.883085,15z/data=!4m2!3m1!1s0x0:0xf1ef02420a933b6a?sa=X&amp;ved=2ahUKEwiv-O60uvTpAhUpzqYKHR1IBNoQ_BIwEnoECBEQCA">מצא ב - Google Maps</a></string>
+    <string name="ayun_link"><a href="https://www.google.com/maps/place/%D7%A0%D7%97%D7%9C+%D7%A2%D7%99%D7%95%D7%9F%E2%80%AD/@33.2469016,35.6134071,13z/data=!4m5!3m4!1s0x151ebd89fb05b5c1:0xffff69047c2134f5!8m2!3d33.248915!4d35.578781">מצא ב - Google Maps</a></string>
+    <string name="gedi_link"><a href="https://www.google.com/maps/place/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA+%D7%98%D7%91%D7%A2+%D7%A2%D7%99%D7%9F+%D7%92%D7%93%D7%99%E2%80%AD/@31.4467076,35.4052317,14z/data=!4m8!1m2!2m1!1z16LXmdefINeS15PXmQ!3m4!1s0x150319df2b32f785:0x576346606ebbd9b7!8m2!3d31.4664!4d35.387983">מצא ב - Google Maps</a></string>
+    <string name="ofir_link"><a href="https://www.google.com/maps/place/%D7%9E%D7%A6%D7%A4%D7%94+%D7%90%D7%95%D7%A4%D7%99%D7%A8%E2%80%AD/@32.8149212,35.6714178,15z/data=!4m5!3m4!1s0x151c1128cb016867:0x5d7791c1ac8a44bf!8m2!3d32.814904!4d35.662663">מצא ב - Google Maps</a></string>
+    <string name="sharon_link"><a href="https://www.google.com/maps/place/%D7%A4%D7%90%D7%A8%D7%A7+%D7%90%D7%A8%D7%99%D7%90%D7%9C+%D7%A9%D7%A8%D7%95%D7%9F%E2%80%AD/@32.0304145,34.8238987,17z/data=!4m5!3m4!1s0x151d4ad8529dd8a1:0xfa1d81c546898022!8m2!3d32.03041!4d34.82171">מצא ב - Google Maps</a></string>
+    <string name="meron_link"><a href="https://www.google.com/maps/place/%D7%94%D7%A8+%D7%9E%D7%99%D7%A8%D7%95%D7%9F%E2%80%AD/@32.9974992,35.420977,15z/data=!3m1!4b1!4m5!3m4!1s0x151c25957e8fe09d:0x3191286eed32bf40!8m2!3d32.9975!4d35.4122222">מצא ב - Google Maps</a></string>
+    <string name="snir_link"><a href="https://www.google.com/maps/place/%D7%A0%D7%97%D7%9C+%D7%A9%D7%A0%D7%99%D7%A8%E2%80%AD/@33.2313146,35.6486663,13z/data=!3m1!4b1!4m5!3m4!1s0x151ebd1c0c00722f:0xa9796caef0ca196b!8m2!3d33.2313195!4d35.6136468">מצא ב - Google Maps</a></string>
+    <string name="cave_link"><a href="https://www.google.com/maps/place/%D7%A4%D7%90%D7%A8%D7%A7+%D7%A2%D7%93%D7%95%D7%9C%D7%9D%E2%80%AD/@31.6447475,34.9630977,17z/data=!3m1!4b1!4m5!3m4!1s0x1502e9f010f2ab77:0x17415ee355346f6e!8m2!3d31.644743!4d34.960909">מצא ב - Google Maps</a></string>
     <string name="shofet_desc">איך מגיעים?\
 הדרך הנוחה ביותר להגיע לשם היא מיקנעם מושבה.\
 הגישה למושבה היא מצומת יקנעם בכביש 70 (ואדי מילק)
@@ -405,4 +405,9 @@ waze: מצפה אופיר</string>
 שמוביל ללכיש. חולפים על פני תל לכיש, לפני הישוב `אמציה` פונים שמאלה וממשיכים לכיוון יער אמציה וסכר אדוריים. מאפסים את מד
 האוץ נוסעים בדרך העפר חולפים על פני הסכר. בקצה פונים ימינה, במזלג הדרכים פונים שמאלה לאורך הגדה הדרומית לאורך הנחל, חולפים
 ליד תעלת הטייה שהכינו הקדמונים וצבעה לבן בוהק. בתום 4.8 ק\"מ משמאל, שביל קטן המוליך למערה.</string>
+    <string name="desc_read">המשך</string>
+    <string name="favorite">favorite</string>
+    <string name="settings">settings</string>
+    <string name="favorites">favorites</string>
+    <string name="profile">profile</string>
 </resources>

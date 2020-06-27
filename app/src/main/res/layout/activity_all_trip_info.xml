@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools                 = "http://schemas.android.com/tools"
-    android:layout_width        = "match_parent"
-    android:layout_height       = "match_parent"
-    android:orientation         = "vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryLight"
     tools:context=".AllTripInfo">
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,19 +20,18 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#110"
+                android:textColor="@color/text_color"
                 android:textDirection="rtl"
                 android:layout_gravity="center"
                 android:paddingTop="50dp"
                 android:paddingBottom="50dp"
                 android:textSize="18sp" />
 
-
             <TextView
                 android:id="@+id/tv_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#110"
+                android:textColor="@color/text_color"
                 android:textSize="12sp"
                 android:textDirection="rtl"
                 android:paddingLeft="50dp"
@@ -44,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/more_button"
-                android:text="המשך"
+                android:text="@string/desc_read"
             android:translationY="-80dp"/>
 
             <TextView
@@ -60,14 +59,13 @@
                 android:focusable="true" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/gpin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/gmaps"
                 android:layout_gravity="center"
                 android:paddingBottom="50dp"
                 android:contentDescription="@string/descriptor" />
-
 
         </LinearLayout>
     </ScrollView>

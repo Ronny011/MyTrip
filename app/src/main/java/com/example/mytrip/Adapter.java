@@ -5,18 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.squircleview.SquircleView;
+
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
 
     private List<ModelClass> modelClassList;
+    // inline constructor
     public Adapter(List<ModelClass> modelClassList) {
         this.modelClassList = modelClassList;
     }
@@ -24,16 +26,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout,
+                viewGroup, false);
         return new Viewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final Viewholder viewholder, final int position) {
-        int resource = modelClassList.get(position).getImageIcon();
-        String title = modelClassList.get(position).getTitle();
+        final int resource = modelClassList.get(position).getImageIcon();
+        final String title = modelClassList.get(position).getTitle();
         final String body = modelClassList.get(position).getBody();
-
+        // referring to the correct trip data as a function of the trip id
         viewholder.btnReadMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,22 +56,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
 
     static class Viewholder extends RecyclerView.ViewHolder{
 
-        private ImageView imageView;
+        private SquircleView sqView;
         private TextView title;
         private TextView body;
         Button  btnReadMore;
-
+        // constructor for the listing item
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             btnReadMore = itemView.findViewById(R.id.btn_read_more);
-            imageView = itemView.findViewById(R.id.imageView);
+            sqView = itemView.findViewById(R.id.sqView);
             title = itemView.findViewById(R.id.textTitle);
             body = itemView.findViewById(R.id.textBody);
         }
 
         private void setData(int imageResource, String titleText, String bodyText)
         {
-            imageView.setImageResource(imageResource);
+            sqView.setImageResource(imageResource);
             title.setText(titleText);
             body.setText(bodyText);
             }
