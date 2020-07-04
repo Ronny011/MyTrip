@@ -406,8 +406,19 @@ waze: מצפה אופיר</string>
 האוץ נוסעים בדרך העפר חולפים על פני הסכר. בקצה פונים ימינה, במזלג הדרכים פונים שמאלה לאורך הגדה הדרומית לאורך הנחל, חולפים
 ליד תעלת הטייה שהכינו הקדמונים וצבעה לבן בוהק. בתום 4.8 ק\"מ משמאל, שביל קטן המוליך למערה.</string>
     <string name="desc_read">המשך</string>
-    <string name="favorite">favorite</string>
-    <string name="settings">settings</string>
-    <string name="favorites">favorites</string>
-    <string name="profile">profile</string>
+    <string name="favorite">אהבתי</string>
+    <string name="settings">הגדרות</string>
+    <string name="favorites">מועדפים</string>
+    <string name="profile">פרופיל</string>
+    <string name="search">חיפוש</string>
+    <string name="register">הירשם</string>
+    <string name="login">כניסה</string>
+    <string name="title_activity_login">כניסה</string>
+    <string name="prompt_email">אימייל</string>
+    <string name="prompt_password">סיסמא</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="confirm_password">אימות סיסמא</string>
 </resources>

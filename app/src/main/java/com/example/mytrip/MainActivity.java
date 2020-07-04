@@ -5,51 +5,115 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    static boolean logged = false;
+public class MainActivity extends AppCompatActivity
+{
+    private boolean pressed = false;
+    private boolean logged = false;
+    private boolean light = true;
     RecyclerView recyclerView;
 
     @Override
     // show the settings overflow menu
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     // overflow menu "action listener"
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
             case R.id.action_settings:
-                // user selected settings
-
+                Intent settings = new Intent(this, Settings.class);
+                startActivity(settings);
                 return true;
 
             case R.id.action_favorite:
+                pressed = !pressed;
+                Log.d("CREATION", "button pressed");
                 // user pressed the heart icon
-                // as a favorite...
+                if(pressed)// if the heart icon is empty
+                {
+                    item.setIcon(R.drawable.sharp_favorite_black_18dp);
+                    Log.d("CREATION", "changed to full");
+                }
+                else if(!pressed)
+                    item.setIcon(R.drawable.sharp_favorite_border_black_18dp);
+                Log.d("CREATION", "changed to empty");
+                //invalidateOptionsMenu();
                 return true;
 
             case R.id.action_favorites:
+                return true;
+
+            case R.id.action_login:
+                return true;
+
+            case R.id.action_profile:
+                return true;
+
+            case R.id.action_register:
+                Intent register = new Intent(this, Register.class);
+                startActivity(register);
+                return false;
+
+            case R.id.action_search:
                 return true;
 
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
+    // toggle logged in status
+    public void setLogged(boolean logged)
+    {
+        this.logged = logged;
+    }
+
+    // toggle app theme (light, dark)
+    public void setLight(boolean light)
+    {
+        this.light = light;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    // which options are available as a function of the log in status
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        //invalidateOptionsMenu();
+        if(!logged)
+        {
+            menu.removeItem(R.id.action_favorite);
+            menu.removeItem(R.id.action_favorites);
+            menu.removeItem(R.id.action_profile);
+        }
+        else
+        {
+            menu.removeItem(R.id.action_login);
+            menu.removeItem(R.id.action_register);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // setting the a tool bar as an action bar

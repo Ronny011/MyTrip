@@ -10,15 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class AllTripInfo extends AppCompatActivity {
 
+public class AllTripInfo extends AppCompatActivity
+{
     private TextView tvLink;
     private String full_text = "";
     private TextView tvDesc;
     private TextView tvTitle;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_trip_info);
 
@@ -31,18 +33,22 @@ public class AllTripInfo extends AppCompatActivity {
         Intent i = getIntent();
         GetTripInfo(i.getIntExtra("tripId", 0));
 
-        more.setOnClickListener(new View.OnClickListener() {
+        more.setOnClickListener(new View.OnClickListener()
+        {
             public void onClick(View v) {
                 tvDesc.setText(full_text);
                 more.setVisibility(View.GONE);
             }
         });
     }
+
     // switch case for filling the second activity with the relevant information
-    private void GetTripInfo(int nTripId) {
+    private void GetTripInfo(int nTripId)
+    {
         final int length = 650;// length of trip description
         int description = R.string.app_name;// default string
-        switch (nTripId) {
+        switch (nTripId)
+        {
             case 0:
                 description = R.string.shofet_desc;// for use with general functions at the bottom
                 tvTitle.setText(R.string.shofet_title);
@@ -99,6 +105,7 @@ public class AllTripInfo extends AppCompatActivity {
                 tvLink.setText(R.string.cave_link);
                 break;
         }
+
         // full string and substring are saved for switching
         full_text = this.getResources().getString(description);
         tvDesc.setText(this.getResources().getString(description).substring(0, length));

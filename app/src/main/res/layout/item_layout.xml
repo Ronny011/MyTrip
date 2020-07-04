@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@android:style/Widget.Material.Button.Borderless"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal">
+    android:layout_height="wrap_content">
 
     <com.example.squircleview.SquircleView
         android:id="@+id/sqView"
@@ -13,14 +13,13 @@
         android:layout_height="126dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="10dp"
-        android:paddingEnd="1dp"
+        android:padding="7dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="@id/btn_read_more"
         app:layout_constraintEnd_toEndOf="@id/btn_read_more"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="@id/btn_read_more"
-        app:layout_constraintTop_toTopOf="@id/btn_read_more"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintTop_toTopOf="@id/btn_read_more" />
 
     <TextView
         android:id="@+id/textTitle"
@@ -32,37 +31,37 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/textBody"
-        app:layout_constraintEnd_toStartOf="@id/sqView"
-        app:layout_constraintHorizontal_bias="0.868"
-        app:layout_constraintStart_toStartOf="@id/btn_read_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintStart_toEndOf="@+id/sqView"
         app:layout_constraintTop_toTopOf="@id/btn_read_more" />
 
     <TextView
         android:id="@+id/textBody"
         android:layout_width="251dp"
         android:layout_height="92dp"
+        android:paddingStart="7dp"
         android:text="@string/descriptor"
         android:textColor="@color/text_color"
         android:textDirection="rtl"
         android:textSize="14sp"
-        android:paddingStart="7dp"
         app:layout_constraintBottom_toBottomOf="@id/btn_read_more"
-        app:layout_constraintEnd_toStartOf="@id/sqView"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="@id/btn_read_more"
+        app:layout_constraintEnd_toEndOf="@+id/btn_read_more"
+        app:layout_constraintStart_toEndOf="@+id/sqView"
         app:layout_constraintTop_toBottomOf="@id/textTitle" />
 
     <Button
         android:id="@+id/btn_read_more"
-        android:layout_width="408dp"
-        android:layout_height="149dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="413dp"
+        android:layout_height="124dp"
+
         android:background="#00FAFAFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <!--        android:layout_marginStart="2dp"-->
+    <!--        android:layout_marginTop="2dp"-->
+    <!--        android:layout_marginEnd="1dp"-->
 </androidx.constraintlayout.widget.ConstraintLayout>

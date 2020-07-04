@@ -15,24 +15,25 @@ import com.example.squircleview.SquircleView;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
 
+public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder>
+{
     private List<ModelClass> modelClassList;
     // inline constructor
-    public Adapter(List<ModelClass> modelClassList) {
-        this.modelClassList = modelClassList;
-    }
+    public Adapter(List<ModelClass> modelClassList) { this.modelClassList = modelClassList; }
 
     @NonNull
     @Override
-    public Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType)
+    {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout,
                 viewGroup, false);
         return new Viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Viewholder viewholder, final int position) {
+    public void onBindViewHolder(@NonNull final Viewholder viewholder, final int position)
+    {
         final int resource = modelClassList.get(position).getImageIcon();
         final String title = modelClassList.get(position).getTitle();
         final String body = modelClassList.get(position).getBody();
@@ -50,18 +51,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
     }
 
     @Override
-    public int getItemCount() {
-        return modelClassList.size();
-    }
+    public int getItemCount() { return modelClassList.size(); }
 
-    static class Viewholder extends RecyclerView.ViewHolder{
+    static class Viewholder extends RecyclerView.ViewHolder
+    {
 
         private SquircleView sqView;
         private TextView title;
         private TextView body;
         Button  btnReadMore;
+
         // constructor for the listing item
-        public Viewholder(@NonNull View itemView) {
+        public Viewholder(@NonNull View itemView)
+        {
             super(itemView);
             btnReadMore = itemView.findViewById(R.id.btn_read_more);
             sqView = itemView.findViewById(R.id.sqView);
@@ -69,13 +71,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
             body = itemView.findViewById(R.id.textBody);
         }
 
+        // setter
         private void setData(int imageResource, String titleText, String bodyText)
         {
             sqView.setImageResource(imageResource);
             title.setText(titleText);
             body.setText(bodyText);
-            }
-
+        }
     }
-
 }
