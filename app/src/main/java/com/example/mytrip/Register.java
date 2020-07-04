@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-public class Register extends AppCompatActivity
+import java.util.List;
+
+public class Register extends AppCompatActivity implements View.OnClickListener
 {
     // element declaration
     private ImageView avatar;
@@ -46,5 +52,65 @@ public class Register extends AppCompatActivity
         email = findViewById(R.id.r_username);
         password = findViewById(R.id.r_password);
         password2 = findViewById(R.id.r_password2);
+        Button register = findViewById(R.id.btn_register);
+        register.setOnClickListener(this);
+    }
+
+    public void onClick(View v)
+    {
+        // input fields
+        String email_field = email.getText().toString();
+        String pass_field = password.getText().toString();
+        String pass2_field = password2.getText().toString();
+
+        //password - all letters and digits 4-12
+        String regex_p = "^*[a-zA-Z0-9]{4,12}$";
+        // email - as permitted by RFC 5322
+        String regex_e = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+
+        // conditions
+        if (email_field.isEmpty() || pass_field.isEmpty() || pass2_field.isEmpty())
+        {
+            try { throw new Exception("יש למלא את כל השדות"); }
+            catch (Exception e)
+            { Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show(); }
+        }
+
+        else if (!email_field.matches(regex_e))
+        {
+            try { throw new Exception("אימייל לא חוקי"); }
+            catch (Exception e)
+            { Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show(); }
+        }
+
+        else if (!pass_field.matches(regex_p))
+        {
+            try { throw new Exception("פורמט סיסמא a-z, A-Z, 0-9, באורך 4-12"); }
+            catch (Exception e)
+            { Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show(); }
+        }
+
+        else if (email_field.contains(" ") || pass_field.contains(" "))
+        {
+            try { throw new Exception("נא להסיר רווחים"); }
+            catch (Exception e)
+            { Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show(); }
+        }
+
+        else if (!pass_field.matches(pass2_field))
+        {
+            try { throw new Exception("סיסמאות לא תואמות"); }
+            catch (Exception e)
+            { Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show(); }
+        }
+        // insert to database
+        else
+        {
+            User new_user = new User(email_field, pass2_field, null, null);
+            Log.d("CREATION", new_user.toString());
+            DbHelper helper = DbHelper.getInstance(this); // open or crete
+            helper.addOrUpdateUser(new_user);
+            //List<User> users = helper.getAllData();
+        }
     }
 }

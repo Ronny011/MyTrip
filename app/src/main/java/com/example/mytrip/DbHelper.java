@@ -80,7 +80,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
             values.put(EMAIL, usr.getEmail());
             values.put(PASSWORD, usr.getPassword());
             values.put(IMAGE, usr.getImg());
-            values.put(FAVORITE, usr.getFavorite());
+            values.put(FAVORITE, usr.getFavorites());
             //long id = db.insert(TABLE_NAME, null, values);
             //usr.setCustomerId(id);
             //return usr;
@@ -124,7 +124,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
         return id;
     }
 
-    // returns table as a string
+    // returns entire table - fix to resemble reference
     public Cursor getAllData()
     {
         SQLiteDatabase db = this.getWritableDatabase();

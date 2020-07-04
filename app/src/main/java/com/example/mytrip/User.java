@@ -1,60 +1,58 @@
 package com.example.mytrip;
 
 
+import java.util.Arrays;
+
 public class User
 {
-    private long customerId;
-    private String strEmail;
-    private String strPassword;
-    private byte[] bImg;
-    private String sirFavorite;
+    private long id;
+    private String email;
+    private String password;
+    private byte[] avatar;
+    private int[] favorites;
     // constructors
-    public User(long customerId, String strEmail, String strPassword, byte[] bImg, String sirFavorite)
+    public User(long id, String email, String password, byte[] avatar, int[] favorites)
     {
-        this.customerId = customerId;
-        this.strEmail = strEmail;
-        this.strPassword = strPassword;
-        this.bImg = bImg;
-        this.sirFavorite = sirFavorite;
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.favorites = favorites;
     }
 
-    public User(String strEmail, String strPassword, String sirFavorite, byte[] bImg)
+    public User(String email, String password, int[] favorites, byte[] avatar)
     {
-        this.customerId = 0;
-        this.strEmail = strEmail;
-        this.strPassword = strPassword;
-        this.bImg = bImg;
-        this.sirFavorite = sirFavorite;
+        //this.id = 0;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.favorites = favorites;
     }
     // getters and setters
-    public long getCustomerId() { return customerId; }
-    public void setCustomerId(long customerId) { this.customerId = customerId; }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
-    public String getEmail() { return strEmail; }
-    public void setEmail(String strEmail) { this.strEmail = strEmail; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getPassword() { return this.strPassword; }
-    public void setPassword(String strPassword) { this.strPassword = strPassword; }
+    public String getPassword() { return this.password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public byte[] getImg() { return this.bImg; }
-    public void setImg(byte[] bImg) { this.bImg = bImg; }
+    public byte[] getImg() { return this.avatar; }
+    public void setImg(byte[] avatar) { this.avatar = avatar; }
 
-    public String getFavorite() { return this.sirFavorite; }
-    public void setFavorite(String sirFavorite) { this.sirFavorite = sirFavorite; }
+    public String getFavorites() { return Arrays.toString(this.favorites); }
+    public void setFavorites(int[] favorites) { this.favorites = favorites; }
 
     @Override
     public String toString()// can't use NonNull annotation
     {
-        if (this != null)
-        {
-            return "User{" +
-                    "Email:" + strEmail + '\'' +
-                    ", Password:" + strPassword + '\'' +
-                    ", Favorite:" + sirFavorite +
-                    ", image:" + bImg +
-                    ", customerID:" + customerId +
-                    "}";
-        }
-        else return super.toString();
+        return "User" + '\'' +
+                "{ID:" + id + '\'' +
+                "Email:" + email + '\'' +
+                "Password:" + password + '\'' +
+                "Favorite:" + Arrays.toString(favorites) + '\'' +
+                ", image:" + Arrays.toString(avatar) + '\'' +
+                "}";
     }
 }
