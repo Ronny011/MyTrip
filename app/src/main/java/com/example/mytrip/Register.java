@@ -21,6 +21,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener
     private EditText email;
     private EditText password;
     private EditText password2;
+    //DbHelper helper;
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -108,8 +109,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         {
             User new_user = new User(email_field, pass2_field, null, null);
             Toast.makeText(getApplicationContext(), new_user.toString(), Toast.LENGTH_LONG).show();
-            //Log.d(TAG, new_user.toString());
-            DbHelper helper = DbHelper.getInstance(this); // open or crete
+            DbHelper helper = DbHelper.getInstance(this); // open or create
             helper.addOrUpdateUser(new_user);
         }
     }

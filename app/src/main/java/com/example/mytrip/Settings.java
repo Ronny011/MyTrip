@@ -55,16 +55,18 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.btn_showDB:
-                List<User> users = helper.getAllData();
+                helper.getAllData();
+                //List<User> users = helper.getAllData();
 //                for (User user : users)
 //                {
 //                    Toast.makeText(getApplicationContext(), user.toString(),
 //                            Toast.LENGTH_SHORT).show();
 //                }
-//                break;
+                break;
 
             case R.id.btn_wipeDB:
                 helper.deleteAllData();
+                this.deleteDatabase("myTrip.db");
                 Toast.makeText(getApplicationContext(), R.string.db_delete_message,
                         Toast.LENGTH_SHORT).show();
                 break;

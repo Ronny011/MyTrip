@@ -1,6 +1,5 @@
 package com.example.mytrip;
 
-//import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -25,9 +24,9 @@ public class DbHelper extends SQLiteOpenHelper // UDI
     public static final String ID = "ID";
     public static final String EMAIL = "EMAIL";
     public static final String PASSWORD = "PASSWORD";
-    public static  final String IMAGE = "IMAGE";
+    public static final String IMAGE = "IMAGE";
     public static final String FAVORITES = "FAVORITES";
-    //SQLiteDatabase db;
+    SQLiteDatabase db;
 
     // singleton implementation
     public static synchronized DbHelper getInstance(Context context)
@@ -41,24 +40,23 @@ public class DbHelper extends SQLiteOpenHelper // UDI
     private DbHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        //mContentResolver = context.getContentResolver();
-        //db = this.getWritableDatabase();
     }
 
     @Override
     // called only once, when DB is created
     public void onCreate(SQLiteDatabase db)
-    {// if not exists is deprecated, a table with the same name cannot be created
-        String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
-                "("+
-                ID + "ID INTEGER PRIMARY KEY AUTOINCREMENT," +// id assigned iteratively
-                EMAIL + "TEXT," +
-                PASSWORD + "TEXT," +
-                IMAGE + "BLOB," +
-                FAVORITES + "TEXT" +
+    {
+        Log.d(TAG, "table "+TABLE_NAME+" has been created");
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
+                " (" +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +// id assigned iteratively
+                EMAIL + " TEXT," +
+                PASSWORD + " TEXT," +
+                IMAGE + " BLOB," +
+                FAVORITES + " TEXT" +
                 ")";
         db.execSQL(CREATE_TABLE);
-        Log.d(TAG, "Database Created Successfully" );// log cat output
+        Log.d(TAG, "Database Created Successfully");// log cat output
     }
 
     @Override
@@ -76,18 +74,15 @@ public class DbHelper extends SQLiteOpenHelper // UDI
         SQLiteDatabase db = this.getWritableDatabase();// pulls db from cache, for editing
         long id = -1;
         db.beginTransaction();// helps with performance and ensures consistency
-        try
-        {
+        try {
             //value insertion
             ContentValues values = new ContentValues();
             values.put(EMAIL, usr.getEmail());
             values.put(PASSWORD, usr.getPassword());
             values.put(IMAGE, usr.getImg());
             values.put(FAVORITES, usr.getFavorites());
-            //long id = db.insert(TABLE_NAME, null, values);
-            //usr.setCustomerId(id);
-            //return usr;
-            //try to update if user with email exists
+            //long user_id = db.insert(TABLE_NAME, null, values);
+            //try to update/insert user
             int rows = db.update(TABLE_NAME, values,
                     EMAIL + "= ?", new String[]{usr.getEmail()});
             if (rows == 1)// if there is such a user
@@ -136,9 +131,11 @@ public class DbHelper extends SQLiteOpenHelper // UDI
             {
                 do
                 {
+                    String id = cursor.getString(cursor.getColumnIndex(ID));
                     String email = cursor.getString(cursor.getColumnIndex(EMAIL));
                     String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
                     String favorites = cursor.getString(cursor.getColumnIndex(FAVORITES));
+                    Log.d(TAG, id + " " + email + " " + password + " " + favorites);
                     User new_user = new User(email, password, favorites, null);
                     users.add(new_user);
                 }
@@ -162,8 +159,8 @@ public class DbHelper extends SQLiteOpenHelper // UDI
         ContentValues values = new ContentValues();
         values.put(IMAGE, usr.getImg());
         // Updating profile picture for user with that email
-        return db.update(TABLE_NAME, values, EMAIL + " = ?",
-                new String[] { String.valueOf(usr.getEmail()) });
+        return db.update(TABLE_NAME, values, EMAIL + "= ?",
+                new String[]{String.valueOf(usr.getEmail())});
     }
 
     // password
@@ -173,13 +170,13 @@ public class DbHelper extends SQLiteOpenHelper // UDI
         ContentValues values = new ContentValues();
         values.put(PASSWORD, usr.getPassword());
         // Updating password for user with that email
-        return db.update(TABLE_NAME, values, EMAIL + " = ?",
-                new String[] { String.valueOf(usr.getEmail()) });
+        return db.update(TABLE_NAME, values, EMAIL + "= ?",
+                new String[]{String.valueOf(usr.getEmail())});
     }
 
     // deletions-
     // remove a user by id
-    public void deleteUser (String id)
+    public void deleteUser(String id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
@@ -193,8 +190,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
     }
 
     // remove the table from the database
-    public void deleteAllData()
-    {
+    public void deleteAllData() {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try
@@ -203,15 +199,44 @@ public class DbHelper extends SQLiteOpenHelper // UDI
             db.setTransactionSuccessful();
         }
         catch (Exception e) { Log.d(TAG, "Error while trying to delete all users"); }
-        finally { db.endTransaction(); }
+        finally
+        {
+            db.endTransaction();
+        }
     }
 
     // search user names
-    public Cursor findName(String strName)
-    {
+    public Cursor findName(String strName) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery(
                 "select * from " + TABLE_NAME + " where " + EMAIL +
                         " LIKE '%" + strName + "%' ", null);
+    }
+
+    public void findUser(User usr)
+    {
+        String QUERY = String.format("SELECT EMAIL, PASSWORD FROM %s", TABLE_NAME);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(QUERY, null);
+        try
+        {
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    String email = cursor.getString(cursor.getColumnIndex(EMAIL));
+                    String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
+                    Log.d(TAG, id + " " + email + " " + password + " " + favorites);
+                    users.add(new_user);
+                }
+                while (cursor.moveToNext());
+            }
+        }
+        catch (Exception e) { Log.d(TAG, "Error while trying to find the user"); }
+        finally
+        {
+            if (cursor != null && !cursor.isClosed())
+                cursor.close();
+        }
     }
 }
