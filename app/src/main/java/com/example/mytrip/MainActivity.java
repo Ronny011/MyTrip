@@ -18,8 +18,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
 {
     private boolean pressed = false;
-    private boolean logged = false;
-    private boolean light = true;
+    private static boolean logged = false;
+    private static boolean light = true;
     RecyclerView recyclerView;
 
     @Override
@@ -80,17 +80,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public static boolean getLogged(){return MainActivity.logged;}
     // toggle logged in status
-    public void setLogged(boolean logged)
-    {
-        this.logged = logged;
-    }
+    public static void setLogged(boolean logged) { MainActivity.logged = logged; }
 
     // toggle app theme (light, dark)
-    public void setLight(boolean light)
-    {
-        this.light = light;
-    }
+    public static void setLight(boolean light) { MainActivity.light = light; }
 
     @Override
     // which options are available as a function of the log in status

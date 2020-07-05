@@ -9,9 +9,9 @@ public class User
     private String email;
     private String password;
     private byte[] avatar;
-    private int[] favorites;
+    private String favorites;
     // constructors
-    public User(long id, String email, String password, byte[] avatar, int[] favorites)
+    public User(long id, String email, String password, byte[] avatar, String favorites)
     {
         this.id = id;
         this.email = email;
@@ -20,7 +20,7 @@ public class User
         this.favorites = favorites;
     }
 
-    public User(String email, String password, int[] favorites, byte[] avatar)
+    public User(String email, String password, String favorites, byte[] avatar)
     {
         //this.id = 0;
         this.email = email;
@@ -41,8 +41,8 @@ public class User
     public byte[] getImg() { return this.avatar; }
     public void setImg(byte[] avatar) { this.avatar = avatar; }
 
-    public String getFavorites() { return Arrays.toString(this.favorites); }
-    public void setFavorites(int[] favorites) { this.favorites = favorites; }
+    public String getFavorites() { return this.favorites; }
+    public void setFavorites(String favorites) { this.favorites = favorites; }
 
     @Override
     public String toString()// can't use NonNull annotation
@@ -51,7 +51,7 @@ public class User
                 "{ID:" + id + '\'' +
                 "Email:" + email + '\'' +
                 "Password:" + password + '\'' +
-                "Favorite:" + Arrays.toString(favorites) + '\'' +
+                "Favorite:" + favorites + '\'' +
                 ", image:" + Arrays.toString(avatar) + '\'' +
                 "}";
     }

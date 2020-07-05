@@ -8,12 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DbHelper extends SQLiteOpenHelper // UDI
 {
     private static DbHelper singleton;
     //ContentResolver mContentResolver;
-    private static final String TAG = DbHelper.class.getSimpleName();
+    private static final String TAG = DbHelper.class.getSimpleName();// D/DbHelper
     // database info
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "myTrip.db";
@@ -23,7 +26,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
     public static final String EMAIL = "EMAIL";
     public static final String PASSWORD = "PASSWORD";
     public static  final String IMAGE = "IMAGE";
-    public static final String FAVORITE = "FAVORITE";
+    public static final String FAVORITES = "FAVORITES";
     //SQLiteDatabase db;
 
     // singleton implementation
@@ -52,7 +55,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
                 EMAIL + "TEXT," +
                 PASSWORD + "TEXT," +
                 IMAGE + "BLOB," +
-                FAVORITE + "TEXT" +
+                FAVORITES + "TEXT" +
                 ")";
         db.execSQL(CREATE_TABLE);
         Log.d(TAG, "Database Created Successfully" );// log cat output
@@ -80,7 +83,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
             values.put(EMAIL, usr.getEmail());
             values.put(PASSWORD, usr.getPassword());
             values.put(IMAGE, usr.getImg());
-            values.put(FAVORITE, usr.getFavorites());
+            values.put(FAVORITES, usr.getFavorites());
             //long id = db.insert(TABLE_NAME, null, values);
             //usr.setCustomerId(id);
             //return usr;
@@ -116,21 +119,39 @@ public class DbHelper extends SQLiteOpenHelper // UDI
                 db.setTransactionSuccessful();
             }
         }
-        catch (Exception e)
-        {
-            Log.d(TAG, "Error while trying to create of update user");
-        }
+        catch (Exception e) { Log.d(TAG, "Error while trying to create of update user"); }
         finally { db.endTransaction(); }
         return id;
     }
 
     // returns entire table - fix to resemble reference
-    public Cursor getAllData()
-    {
+    public List<User> getAllData() {   // array list of user objects
+        List<User> users = new ArrayList<>();
+        String QUERY = String.format("SELECT * FROM %s", TABLE_NAME);
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery(
-                "select * from "+TABLE_NAME,
-                null);
+        Cursor cursor = db.rawQuery(QUERY, null);
+        try
+        {
+            if (cursor.moveToFirst())
+            {
+                do
+                {
+                    String email = cursor.getString(cursor.getColumnIndex(EMAIL));
+                    String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
+                    String favorites = cursor.getString(cursor.getColumnIndex(FAVORITES));
+                    User new_user = new User(email, password, favorites, null);
+                    users.add(new_user);
+                }
+                while (cursor.moveToNext());
+            }
+        }
+        catch (Exception e) { Log.d(TAG, "Error while trying to get users from database"); }
+        finally
+        {
+            if (cursor != null && !cursor.isClosed())
+                cursor.close();
+        }
+        return users;
     }
 
     // user updates:
@@ -167,10 +188,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
             db.delete(TABLE_NAME, "ID = ?", new String[]{id});
             db.setTransactionSuccessful();
         }
-        catch (Exception e)
-        {
-            Log.d(TAG, "Error while trying to delete a user");
-        }
+        catch (Exception e) { Log.d(TAG, "Error while trying to delete a user"); }
         finally { db.endTransaction(); }
     }
 
@@ -184,10 +202,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
             db.delete(TABLE_NAME, null, null);
             db.setTransactionSuccessful();
         }
-        catch (Exception e)
-        {
-            Log.d(TAG, "Error while trying to delete all users");
-        }
+        catch (Exception e) { Log.d(TAG, "Error while trying to delete all users"); }
         finally { db.endTransaction(); }
     }
 

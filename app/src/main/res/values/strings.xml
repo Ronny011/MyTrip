@@ -421,4 +421,9 @@ waze: מצפה אופיר</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="confirm_password">אימות סיסמא</string>
+    <string name="wipe_btn">מחק בסיס נתונים</string>
+    <string name="show_btn">הצג בסיס נתונים</string>
+    <string name="theme_switch">ערכת נושא</string>
+    <string name="logoff_btn">התנתק</string>
+    <string name="db_delete_message">בסיס נתונים נמחק בהצלחה</string>
 </resources>

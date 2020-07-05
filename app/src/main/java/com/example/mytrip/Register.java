@@ -107,10 +107,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         else
         {
             User new_user = new User(email_field, pass2_field, null, null);
-            Log.d("CREATION", new_user.toString());
+            Toast.makeText(getApplicationContext(), new_user.toString(), Toast.LENGTH_LONG).show();
+            //Log.d(TAG, new_user.toString());
             DbHelper helper = DbHelper.getInstance(this); // open or crete
             helper.addOrUpdateUser(new_user);
-            //List<User> users = helper.getAllData();
         }
     }
 }

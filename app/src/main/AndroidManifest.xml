@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/main_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Register"/>
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".Register" />
         <activity android:name=".AllTripInfo" />
         <activity android:name=".SplashScreen">
             <intent-filter>
