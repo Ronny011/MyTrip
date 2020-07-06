@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +59,9 @@ public class MainActivity extends AppCompatActivity
                 return true;
 
             case R.id.action_login:
-                return true;
+                Intent login = new Intent(this, Login.class);
+                startActivity(login);
+                return false;
 
             case R.id.action_profile:
                 return true;
@@ -91,18 +92,18 @@ public class MainActivity extends AppCompatActivity
     // which options are available as a function of the log in status
     public boolean onPrepareOptionsMenu(Menu menu)
     {
-        //invalidateOptionsMenu();
-        if(!logged)
-        {
-            menu.removeItem(R.id.action_favorite);
-            menu.removeItem(R.id.action_favorites);
-            menu.removeItem(R.id.action_profile);
-        }
-        else
-        {
-            menu.removeItem(R.id.action_login);
-            menu.removeItem(R.id.action_register);
-        }
+        MenuItem favorite = menu.findItem(R.id.action_favorite);
+        MenuItem favorites = menu.findItem(R.id.action_favorites);
+        MenuItem profile = menu.findItem(R.id.action_profile);
+        MenuItem search = menu.findItem(R.id.action_search);
+        MenuItem login = menu.findItem(R.id.action_login);
+        MenuItem register = menu.findItem(R.id.action_register);
+        favorite.setVisible(false);
+        favorites.setVisible(MainActivity.getLogged());
+        profile.setVisible(MainActivity.getLogged());
+        search.setVisible(MainActivity.getLogged());
+        login.setVisible(!MainActivity.getLogged());
+        register.setVisible(!MainActivity.getLogged());
         return super.onPrepareOptionsMenu(menu);
     }
 

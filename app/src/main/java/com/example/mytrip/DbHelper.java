@@ -14,7 +14,6 @@ import java.util.List;
 public class DbHelper extends SQLiteOpenHelper // UDI
 {
     private static DbHelper singleton;
-    //ContentResolver mContentResolver;
     private static final String TAG = DbHelper.class.getSimpleName();// D/DbHelper
     // database info
     private static final int DATABASE_VERSION = 1;
@@ -38,9 +37,7 @@ public class DbHelper extends SQLiteOpenHelper // UDI
 
     // should only be called by getInstance()
     private DbHelper(Context context)
-    {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
+    { super(context, DATABASE_NAME, null, DATABASE_VERSION); }
 
     @Override
     // called only once, when DB is created
@@ -74,7 +71,8 @@ public class DbHelper extends SQLiteOpenHelper // UDI
         SQLiteDatabase db = this.getWritableDatabase();// pulls db from cache, for editing
         long id = -1;
         db.beginTransaction();// helps with performance and ensures consistency
-        try {
+        try
+        {
             //value insertion
             ContentValues values = new ContentValues();
             values.put(EMAIL, usr.getEmail());
@@ -119,8 +117,9 @@ public class DbHelper extends SQLiteOpenHelper // UDI
         return id;
     }
 
-    // returns entire table - fix to resemble reference
-    public List<User> getAllData() {   // array list of user objects
+    // returns entire table
+    public List<User> getAllData()
+    {   // array list of user objects
         List<User> users = new ArrayList<>();
         String QUERY = String.format("SELECT * FROM %s", TABLE_NAME);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -189,8 +188,9 @@ public class DbHelper extends SQLiteOpenHelper // UDI
         finally { db.endTransaction(); }
     }
 
-    // remove the table from the database
-    public void deleteAllData() {
+    // remove the database
+    public void deleteAllData()
+    {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try
@@ -206,15 +206,17 @@ public class DbHelper extends SQLiteOpenHelper // UDI
     }
 
     // search user names
-    public Cursor findName(String strName) {
+    public Cursor findName(String strName)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery(
                 "select * from " + TABLE_NAME + " where " + EMAIL +
                         " LIKE '%" + strName + "%' ", null);
     }
 
-    public void findUser(User usr)
+    public boolean findUser(User usr)
     {
+        boolean found = false;
         String QUERY = String.format("SELECT EMAIL, PASSWORD FROM %s", TABLE_NAME);
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(QUERY, null);
@@ -226,8 +228,11 @@ public class DbHelper extends SQLiteOpenHelper // UDI
                 {
                     String email = cursor.getString(cursor.getColumnIndex(EMAIL));
                     String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
-                    Log.d(TAG, id + " " + email + " " + password + " " + favorites);
-                    users.add(new_user);
+                    if (email.equals(usr.getEmail()) && password.equals(usr.getPassword()))
+                    {
+                        found = true;
+                        break;
+                    }
                 }
                 while (cursor.moveToNext());
             }
@@ -238,5 +243,6 @@ public class DbHelper extends SQLiteOpenHelper // UDI
             if (cursor != null && !cursor.isClosed())
                 cursor.close();
         }
+        return found;
     }
 }

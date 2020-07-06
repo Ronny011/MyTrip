@@ -2,6 +2,7 @@ package com.example.mytrip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener
 {
     private EditText email;
     private EditText password;
-    private Button login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,12 +21,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_login);
         email = findViewById(R.id.l_username);
         password = findViewById(R.id.l_password);
-        login = findViewById(R.id.btn_login);
+        Button login = findViewById(R.id.btn_login);
         login.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         String email_field = email.getText().toString();
         String pass_field = password.getText().toString();
 
@@ -63,14 +64,25 @@ public class Login extends AppCompatActivity implements View.OnClickListener
             catch (Exception e)
             { Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show(); }
         }
-
         // compare to database
         else
         {
             User new_user = new User(email_field, pass_field, null, null);
-            Toast.makeText(getApplicationContext(), new_user.toString(), Toast.LENGTH_LONG).show();
             DbHelper helper = DbHelper.getInstance(this); // open or create
-            helper.addOrUpdateUser(new_user);
+            // sets the static flag to comparison result
+            MainActivity.setLogged(helper.findUser(new_user));
+//            String flagLogged = Boolean.toString(MainActivity.getLogged());
+//            Log.d("D/DbHelper", flagLogged);
+            if (MainActivity.getLogged())
+            {
+                Toast.makeText(getApplicationContext(), "נכנס...",
+                        Toast.LENGTH_SHORT).show();
+                Intent backToMain = new Intent(this, MainActivity.class);
+                startActivity(backToMain);
+            }
+            else
+                Toast.makeText(getApplicationContext(), "נסה שוב",
+                        Toast.LENGTH_SHORT).show();
         }
     }
 }
