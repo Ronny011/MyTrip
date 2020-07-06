@@ -67,16 +67,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener
         // compare to database
         else
         {
-            User new_user = new User(email_field, pass_field, null, null);
+            User temp_new_user = new User(email_field, pass_field, null, null);
             DbHelper helper = DbHelper.getInstance(this); // open or create
             // sets the static flag to comparison result
-            MainActivity.setLogged(helper.findUser(new_user));
+            MainActivity.setLogged(helper.findUser(temp_new_user));
 //            String flagLogged = Boolean.toString(MainActivity.getLogged());
 //            Log.d("D/DbHelper", flagLogged);
             if (MainActivity.getLogged())
             {
                 Toast.makeText(getApplicationContext(), "נכנס...",
                         Toast.LENGTH_SHORT).show();
+                MainActivity.session_user = new User(helper.pullUser(email_field));
+                if (MainActivity.session_user.getFavorites() != null)
+                    MainActivity.session_user.convertFavorites();
                 Intent backToMain = new Intent(this, MainActivity.class);
                 startActivity(backToMain);
             }

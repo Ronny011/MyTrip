@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -244,5 +245,31 @@ public class DbHelper extends SQLiteOpenHelper // UDI
                 cursor.close();
         }
         return found;
+    }
+
+    public User pullUser(String email)
+    {
+        User pulledUser = null;
+        String QUERY = String
+                .format("SELECT EMAIL, PASSWORD, FAVORITES, IMAGE FROM %s WHERE %s = '%s' ", TABLE_NAME, EMAIL, email);
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(QUERY, null);
+        try
+        {
+            if (cursor.moveToFirst())
+            {
+                String password = cursor.getString(cursor.getColumnIndex(PASSWORD));
+                String favorites = cursor.getString(cursor.getColumnIndex(FAVORITES));
+                byte[] image = cursor.getBlob(cursor.getColumnIndex(IMAGE));
+                pulledUser = new User(email, password, favorites, image);
+            }
+        }
+        catch (Exception e) { Log.d(TAG, "Error while trying to pull user data"); }
+        finally
+        {
+            if (cursor != null && !cursor.isClosed())
+                cursor.close();
+        }
+        return pulledUser;
     }
 }

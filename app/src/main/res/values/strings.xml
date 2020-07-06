@@ -426,4 +426,9 @@ waze: מצפה אופיר</string>
     <string name="theme_switch">ערכת נושא</string>
     <string name="logoff_btn">התנתק</string>
     <string name="db_delete_message">בסיס נתונים נמחק בהצלחה</string>
+    <string name="db_show_message">בסיס הנתונים מופיע בקונסול תחת D/DbHelper</string>
+    <string name="logoff_message">התנתקת בהצלחה</string>
+    <string name="no_trips_message">אין לך טיולים מועדפים</string>
+    <string name="favs_title_string">הטיולים המועדפים שלך:</string>
+    <string name="save_favs_string">שמור</string>
 </resources>
