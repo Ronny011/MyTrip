@@ -1,15 +1,18 @@
 package com.example.mytrip;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class AllTripInfo extends AppCompatActivity
@@ -18,12 +21,89 @@ public class AllTripInfo extends AppCompatActivity
     private String full_text = "";
     private TextView tvDesc;
     private TextView tvTitle;
-
+    private int nID = -1;
+    private static boolean pressed = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.action_settings:
+                Intent settings = new Intent(this, Settings.class);
+                startActivity(settings);
+                return true;
+
+            case R.id.action_favorite:
+                pressed = !pressed;
+                // user pressed the heart icon
+                if(pressed)
+                {
+                    item.setIcon(R.drawable.sharp_favorite_black_18dp);
+                    MainActivity.favs.add(nID);
+                    Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs), Toast.LENGTH_SHORT).show();
+                }
+                else if(!pressed)
+                {
+                    item.setIcon(R.drawable.sharp_favorite_border_black_18dp);
+                    MainActivity.favs.remove(Integer.valueOf(nID));
+                    Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs), Toast.LENGTH_SHORT).show();
+                }
+                return true;
+
+            case R.id.action_favorites:
+                return true;
+
+            case R.id.action_login:
+                Intent login = new Intent(this, Login.class);
+                startActivity(login);
+                return false;
+
+            case R.id.action_profile:
+                return true;
+
+            case R.id.action_register:
+                Intent register = new Intent(this, Register.class);
+                startActivity(register);
+                return false;
+
+            case R.id.action_search:
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        MenuItem favorite = menu.findItem(R.id.action_favorite);
+        MenuItem favorites = menu.findItem(R.id.action_favorites);
+        MenuItem profile = menu.findItem(R.id.action_profile);
+        MenuItem search = menu.findItem(R.id.action_search);
+        MenuItem login = menu.findItem(R.id.action_login);
+        MenuItem register = menu.findItem(R.id.action_register);
+        favorites.setVisible(MainActivity.getLogged());
+        favorite.setVisible(MainActivity.getLogged());
+        profile.setVisible(MainActivity.getLogged());
+        search.setVisible(MainActivity.getLogged());
+        login.setVisible(!MainActivity.getLogged());
+        register.setVisible(!MainActivity.getLogged());
+        if(!MainActivity.favs.isEmpty())
+        {
+            if (MainActivity.favs.contains(nID)) {
+                if (pressed) {
+                    favorite.setIcon(R.drawable.sharp_favorite_black_18dp);
+                }
+            }
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -32,6 +112,12 @@ public class AllTripInfo extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_trip_info);
 
+        Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs), Toast.LENGTH_SHORT).show();//
+
+        // setting the a tool bar as an action bar
+        Toolbar action_bar = (Toolbar) findViewById(R.id.tb);
+        setSupportActionBar(action_bar);
+
         tvTitle = findViewById(R.id.tv_title);
         tvTitle.setTypeface(null, Typeface.BOLD);
         tvDesc = findViewById(R.id.tv_desc);
@@ -39,7 +125,17 @@ public class AllTripInfo extends AppCompatActivity
         final Button more = findViewById(R.id.more_button);
 
         Intent i = getIntent();
-        GetTripInfo(i.getIntExtra("tripId", 0));
+        nID = i.getIntExtra("tripId", 0);
+        if(!MainActivity.favs.isEmpty())
+        {
+            if (MainActivity.favs.contains(nID))
+            {
+                pressed = true;
+            }
+        }
+
+
+        GetTripInfo(nID);
 
         more.setOnClickListener(new View.OnClickListener()
         {

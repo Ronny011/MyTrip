@@ -1,7 +1,11 @@
 package com.example.mytrip;
 
 
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class User
 {
@@ -18,6 +22,15 @@ public class User
         this.password = password;
         this.avatar = avatar;
         this.favorites = favorites;
+    }
+
+    public User(User user)
+    {
+        id = user.getId();
+        email = user.getEmail();
+        password = user.getPassword();
+        avatar = user.getImg();
+        favorites = user.getFavorites();
     }
 
     public User(String email, String password, String favorites, byte[] avatar)
@@ -54,5 +67,23 @@ public class User
                 "Favorite:" + favorites + '\'' +
                 ", image:" + Arrays.toString(avatar) + '\'' +
                 "}";
+    }
+
+    public void convertFavorites()
+    {
+        String input = favorites;
+        String[] numbers = input.split(",");
+        List<Integer> result = new ArrayList<Integer>();
+        for(String number : numbers) {
+            try {
+                result.add(Integer.parseInt(number.trim()));
+
+            } catch(Exception e) {
+                // log about conversion error
+            }
+        }
+        Log.d("D/DHelper", result.toString());
+        Log.d("D/DHelper", result.getClass().getName());
+        MainActivity.favs = result;
     }
 }

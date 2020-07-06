@@ -2,6 +2,7 @@ package com.example.mytrip;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,9 +33,11 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
         logoff.setOnClickListener(this);
         if(!MainActivity.getLogged())
             logoff.setEnabled(false);
-        theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
                 if (theme.isChecked())
                     MainActivity.setLight(false);
                 else
@@ -52,16 +55,16 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
         {
             case R.id.btn_logoff:
                 MainActivity.setLogged(false);
+                Toast.makeText(getApplicationContext(), R.string.logoff_message,
+                        Toast.LENGTH_SHORT).show();
+                Intent backToMain = new Intent(this, MainActivity.class);
+                startActivity(backToMain);
                 break;
 
             case R.id.btn_showDB:
                 helper.getAllData();
-                //List<User> users = helper.getAllData();
-//                for (User user : users)
-//                {
-//                    Toast.makeText(getApplicationContext(), user.toString(),
-//                            Toast.LENGTH_SHORT).show();
-//                }
+                Toast.makeText(getApplicationContext(), R.string.db_show_message,
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btn_wipeDB:

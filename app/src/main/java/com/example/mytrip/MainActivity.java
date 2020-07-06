@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -19,7 +18,10 @@ public class MainActivity extends AppCompatActivity
     private boolean pressed = false;
     private static boolean logged = false;
     private static boolean light = true;
+    static List<Integer> favs = new ArrayList<>();
+    static User session_user;
     RecyclerView recyclerView;
+    //ConstraintLayout cl;
 
     @Override
     // show the settings overflow menu
@@ -40,23 +42,10 @@ public class MainActivity extends AppCompatActivity
                 startActivity(settings);
                 return true;
 
-            case R.id.action_favorite:
-                pressed = !pressed;
-                Log.d("CREATION", "button pressed");
-                // user pressed the heart icon
-                if(pressed)// if the heart icon is empty
-                {
-                    item.setIcon(R.drawable.sharp_favorite_black_18dp);
-                    Log.d("CREATION", "changed to full");
-                }
-                else if(!pressed)
-                    item.setIcon(R.drawable.sharp_favorite_border_black_18dp);
-                Log.d("CREATION", "changed to empty");
-                //invalidateOptionsMenu();
-                return true;
-
             case R.id.action_favorites:
-                return true;
+                Intent favorites = new Intent(this, Favorites.class);
+                startActivity(favorites);
+                return false;
 
             case R.id.action_login:
                 Intent login = new Intent(this, Login.class);
@@ -82,6 +71,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public static boolean getLogged(){return MainActivity.logged;}
+    public static boolean getLight(){return MainActivity.light;}
     // toggle logged in status
     public static void setLogged(boolean logged) { MainActivity.logged = logged; }
 
@@ -115,6 +105,17 @@ public class MainActivity extends AppCompatActivity
         // setting the a tool bar as an action bar
         Toolbar action_bar = (Toolbar) findViewById(R.id.tb);
         setSupportActionBar(action_bar);
+        //page color
+//        Context context;
+//        cl = findViewById(R.id.main_page);
+//        if (!MainActivity.getLight())
+//        {
+//            cl.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryLight));
+//        }
+//        else if (MainActivity.getLight())
+//        {
+//            cl.setBackgroundColor(ContextCompat.getColor(this, R.color.colorDark));
+//        }
 
         recyclerView = findViewById(R.id.rv);
         // setting a linear layout (vertical) for the recycle view
