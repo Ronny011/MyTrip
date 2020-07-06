@@ -431,4 +431,9 @@ waze: מצפה אופיר</string>
     <string name="no_trips_message">אין לך טיולים מועדפים</string>
     <string name="favs_title_string">הטיולים המועדפים שלך:</string>
     <string name="save_favs_string">שמור</string>
+    <string name="user_mail_message">אימייל משתמש</string>
+    <string name="profile_page_title">פרופיל משתמש</string>
+    <string name="search_hint">הזן שם לחיפוש</string>
+    <string name="search_btn_text">חפש</string>
+    <string name="emails_message">מיילים</string>
 </resources>

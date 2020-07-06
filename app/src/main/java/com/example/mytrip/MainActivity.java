@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_settings:
                 Intent settings = new Intent(this, Settings.class);
                 startActivity(settings);
-                return true;
+                return false;
 
             case R.id.action_favorites:
                 Intent favorites = new Intent(this, Favorites.class);
@@ -63,7 +63,9 @@ public class MainActivity extends AppCompatActivity
                 return false;
 
             case R.id.action_search:
-                return true;
+                Intent search = new Intent(this, Search.class);
+                startActivity(search);
+                return false;
 
             default:
                 // If we got here, the user's action was not recognized.

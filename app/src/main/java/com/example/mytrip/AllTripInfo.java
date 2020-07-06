@@ -89,12 +89,14 @@ public class AllTripInfo extends AppCompatActivity
         MenuItem search = menu.findItem(R.id.action_search);
         MenuItem login = menu.findItem(R.id.action_login);
         MenuItem register = menu.findItem(R.id.action_register);
-        favorites.setVisible(MainActivity.getLogged());
+        MenuItem settings = menu.findItem(R.id.action_settings);
+        favorites.setVisible(false);
         favorite.setVisible(MainActivity.getLogged());
-        profile.setVisible(MainActivity.getLogged());
-        search.setVisible(MainActivity.getLogged());
+        profile.setVisible(false);
+        search.setVisible(false);
         login.setVisible(!MainActivity.getLogged());
         register.setVisible(!MainActivity.getLogged());
+        settings.setVisible(false);
         if(!MainActivity.favs.isEmpty())
         {
             if (MainActivity.favs.contains(nID)) {

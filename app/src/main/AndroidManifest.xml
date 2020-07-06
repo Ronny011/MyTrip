@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mytrip">
-    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.type.watch"
+        tools:ignore="ManifestOrder" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -10,11 +19,13 @@
         android:roundIcon="@mipmap/main_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".profilePage"/>
+        <activity android:name=".Search" />
+        <activity android:name=".profilePage" />
         <activity android:name=".Settings" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".AllTripInfo" />
+        <activity android:name=".Favorites" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +35,5 @@
         </activity>
         <activity android:name=".MainActivity" />
     </application>
-
-    <uses-feature android:name="android.hardware.type.watch" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 </manifest>

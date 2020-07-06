@@ -34,10 +34,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private final int requestCode = 101;
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.removeItem(R.id.action_favorite);

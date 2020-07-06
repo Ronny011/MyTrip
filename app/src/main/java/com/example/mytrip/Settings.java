@@ -17,7 +17,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
     private Button wipeDB;
     private Button showDB;
     private Button logoff;
-    private Switch theme;
+//    private Switch theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,23 +27,23 @@ public class Settings extends AppCompatActivity implements View.OnClickListener
         wipeDB = findViewById(R.id.btn_wipeDB);
         showDB = findViewById(R.id.btn_showDB);
         logoff = findViewById(R.id.btn_logoff);
-        theme = findViewById(R.id.switch_theme);
+        //theme = findViewById(R.id.switch_theme);
         wipeDB.setOnClickListener(this);
         showDB.setOnClickListener(this);
         logoff.setOnClickListener(this);
         if(!MainActivity.getLogged())
             logoff.setEnabled(false);
-        theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if (theme.isChecked())
-                    MainActivity.setLight(false);
-                else
-                    MainActivity.setLight(true);
-            }
-        });
+//        theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+//        {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+//            {
+//                if (theme.isChecked())
+//                    MainActivity.setLight(false);
+//                else
+//                    MainActivity.setLight(true);
+//            }
+//        });
     }
 
     @Override
