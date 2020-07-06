@@ -12,18 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 public class profilePage extends AppCompatActivity {
 
     private ImageView avatar;
-    private TextView mTextView;
+    private TextView user_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
-        mTextView = (TextView) findViewById(R.id.text);
+        user_email = (TextView) findViewById(R.id.user_email);
         avatar = (ImageView) findViewById(R.id.avatar);
 
-        User new_user = new User("m@m.c", "", null, null);
-//        Log.d(profilePage.class.getName(), helper.findUser(new_user));
-//        avatar.setImageBitmap();
+
+        User user = MainActivity.session_user;
+        if (user.getImg() != null) {
+            avatar.setImageBitmap(convertByteToBitmap(user.getImg()));
+        }
+        user_email.setText(user.getEmail());
+
     }
 
     private Bitmap convertByteToBitmap(byte[] byteImage) {

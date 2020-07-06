@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity
                 return false;
 
             case R.id.action_profile:
+                Intent profile = new Intent(this, profilePage.class);
+                startActivity(profile);
                 return true;
 
             case R.id.action_register:
