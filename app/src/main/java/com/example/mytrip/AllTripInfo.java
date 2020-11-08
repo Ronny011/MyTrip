@@ -46,13 +46,15 @@ public class AllTripInfo extends AppCompatActivity
                 {
                     item.setIcon(R.drawable.sharp_favorite_black_18dp);
                     MainActivity.favs.add(nID);
-                    Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs),
+                            Toast.LENGTH_SHORT).show();
                 }
                 else if(!pressed)
                 {
                     item.setIcon(R.drawable.sharp_favorite_border_black_18dp);
                     MainActivity.favs.remove(Integer.valueOf(nID));
-                    Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs),
+                            Toast.LENGTH_SHORT).show();
                 }
                 return true;
 
@@ -114,7 +116,8 @@ public class AllTripInfo extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_trip_info);
 
-        Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs), Toast.LENGTH_SHORT).show();//
+        Toast.makeText(getApplicationContext(), String.valueOf(MainActivity.favs),
+                Toast.LENGTH_SHORT).show();//
 
         // setting the a tool bar as an action bar
         Toolbar action_bar = (Toolbar) findViewById(R.id.tb);
@@ -156,7 +159,8 @@ public class AllTripInfo extends AppCompatActivity
         switch (nTripId)
         {
             case 0:
-                description = R.string.shofet_desc;// for use with general functions at the bottom
+                // for use with general functions at the bottom
+                description = R.string.shofet_desc;
                 tvTitle.setText(R.string.shofet_title);
                 tvLink.setText(R.string.shofet_link);
                 break;
